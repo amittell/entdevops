@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update>
+    <sys_documentation element="repository" label="Repository" language="en" table="x_snc_entdevops_change_approval_rules">
+        <sys_documentation action="INSERT_OR_UPDATE">
+            <element>repository</element>
+            <help/>
+            <hint/>
+            <label>Repository</label>
+            <language>en</language>
+            <name>x_snc_entdevops_change_approval_rules</name>
+            <plural>Repositories</plural>
+            <sys_class_name>sys_documentation</sys_class_name>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2018-07-25 15:25:56</sys_created_on>
+            <sys_id>c11bcf09db27130048e8ff041d9619d5</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_name>Repository</sys_name>
+            <sys_package display_value="entdevops" source="x_snc_entdevops">86b561e0dba7930048e8ff041d9619c9</sys_package>
+            <sys_policy/>
+            <sys_scope display_value="entdevops">86b561e0dba7930048e8ff041d9619c9</sys_scope>
+            <sys_update_name>sys_documentation_x_snc_entdevops_change_approval_rules_repository_en</sys_update_name>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2018-07-25 15:25:56</sys_updated_on>
+            <url/>
+            <url_target/>
+        </sys_documentation>
+    </sys_documentation>
+</record_update>

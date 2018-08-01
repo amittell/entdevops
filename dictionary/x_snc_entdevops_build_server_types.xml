@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element label="Build Server Types" max_length="40" name="x_snc_entdevops_build_server_types" type="collection">
+        <element label="Fetch Build Script" max_length="20480" name="fetch_build_script" type="script"/>
+        <element label="Name" max_length="48" name="name" type="string"/>
+        <element label="Webhook Script" max_length="20480" name="webhook_script" type="script"/>
+    </element>
+</database>

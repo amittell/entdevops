@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>package_private</access>
+        <active>true</active>
+        <api_name>x_snc_entdevops.webcall</api_name>
+        <client_callable>false</client_callable>
+        <description/>
+        <name>webcall</name>
+        <script><![CDATA[var webcall = Class.create();
+webcall.prototype = {
+	initialize: function() {},
+		
+		process: function(url,type,typeid) {
+			gs.info("XXXXX "+url+" "+type+" "+typeid);
+			if (type == "SCM"){
+				gs.info("Script Include webcall invoked for SCM");
+				var gr = new GlideRecord('x_snc_entdevops_scm_repositories');
+				gr.get(typeid);
+				gs.info("SCM GLIDE RECORD WAS: "+gr.sys_id);
+				gs.info("TYPE= "+gr.credential.type);
+				var scmwebcall = new sn_ws.RESTMessageV2();
+				//Web Call to support Basic Auth
+				if(gr.credential.type == "Basic"){
+					gs.info("Webcall: Using Basic Auth.");
+					
+					var username = gr.credential.user + "";
+					var password = null;
+					//gs.info("SCM Username = " +username);
+					if (gr.credential.password){
+						password = gr.credential.password.getDecryptedValue() + "";
+					}
+					else {
+						gs.info("WARNING: SCM credential password was blank.");
+					}
+					scmwebcall.setBasicAuth(username, password);
+				}
+				
+				//Web Call to support Auth Token
+				if(gr.credential.type == "Token"){
+					gs.info("Webcall: Using Auth Token");
+					if (gr.credential.authtoken){
+						var authtoken = gr.credential.authtoken.getDecryptedValue() + "";
+					}
+					else {
+						var authtoken = null;
+						gs.info("WARNING: SCM credential auth token was blank.");
+					}
+				}
+				
+				//Build Start of the Web Call
+				
+				scmwebcall.setEndpoint(url);
+				gs.info("Webcall: URL = "+url);
+				scmwebcall.setHttpMethod("get");
+				//Add Mid Server if Needed.
+				
+				if (gr.mid_server){
+					gs.info("Webcall: Using MID = "+gr.mid_server.name);
+					//gs.info("Mid Server SYSID: " + gr.mid_server);
+					scmwebcall.setMIDServer(gr.mid_server.name);
+				}
+				
+				scmwebcall.setEccParameter('skip_sensor', true);
+				var httpexe = scmwebcall.execute();
+				var weberror = httpexe.getErrorCode();
+				if (weberror){
+					gs.info("ERROR IN SCM WEBCALL");
+					gs.info("STATUS="+httpexe.getStatusCode());
+					gs.info("BODY="+httpexe.getBody());
+					throw httpexe.getErrorMessage();
+				}
+				else {
+					try {
+						global.JSON.parse(httpexe.getBody());
+					} catch (e) {
+						return httpexe.getBody();
+					}
+					//gs.info("Webcall: SCM BODY = "+httpexe.getBody());
+					return global.JSON.parse(httpexe.getBody());			
+				}
+				
+				
+			}
+			if (type == "Build"){
+				var gb = new GlideRecord('x_snc_entdevops_build_servers');
+				gb.get(typeid);
+				var username = gb.credentials.username + "";
+				//gs.info("Build Server userename " + username);
+				if (gb.credentials.password){
+					var password = gb.credentials.password.getDecryptedValue() + "";
+					//gs.info("Build Sever password " + password);
+				}
+				else {
+					var password = null;
+				}
+				
+				if (gb.credentials.authtoken){
+					var authtoken = gb.credentials.authtoken.getDecryptedValue() + "";
+				}
+				else {
+					var authtoken = null;
+				}
+				//Build Start of the Web Call
+				var webcall = new sn_ws.RESTMessageV2();
+				webcall.setEndpoint(url);
+				webcall.setHttpMethod("get");
+				
+				//Add Mid Server if Needed.
+				if (gb.mid_server){
+					//gs.info("Mid Server :" + gb.mid_server);
+					webcall.setMIDServer(gb.mid_server.name);
+				}
+				//Web Call to support Basic Auth
+				if(gb.credentials.type == "Basic"){
+					gs.info("Using Basic Auth for Build Server");
+					webcall.setBasicAuth(username, password);
+				}
+				
+				//Web Call to support Auth Token needs to be written
+				if(gb.credentials.type == "Token"){
+					gs.info("Using Auth Token for Build Server");
+				}
+				//gs.info("ABOUT TO MAKE WEBCALL TO "+url);
+				webcall.setEccParameter('skip_sensor', true);
+				var httpexe = webcall.execute();
+				var weberror = httpexe.getErrorCode();
+				if (weberror){
+					throw httpexe.getErrorMessage();
+				}
+				else {
+					var responseBody = httpexe.getBody();
+					//gs.info("STATUS="+httpexe.getStatusCode());
+					//gs.info("BODY="+httpexe.getBody());
+					try {
+						global.JSON.parse(httpexe.getBody());
+					} catch (e) {
+						return httpexe.getBody();
+					}
+					return global.JSON.parse(httpexe.getBody());
+				}
+			}
+		},
+		
+		type: 'webcall'
+	};]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2018-07-25 17:23:14</sys_created_on>
+        <sys_id>2ed5af49db67130048e8ff041d96197f</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_name>webcall</sys_name>
+        <sys_package display_value="entdevops" source="x_snc_entdevops">86b561e0dba7930048e8ff041d9619c9</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_scope display_value="entdevops">86b561e0dba7930048e8ff041d9619c9</sys_scope>
+        <sys_update_name>sys_script_include_2ed5af49db67130048e8ff041d96197f</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2018-07-25 19:07:45</sys_updated_on>
+    </sys_script_include>
+</record_update>

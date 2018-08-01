@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element label="Commiter Score" max_length="40" name="x_snc_entdevops_commiter_score" type="collection">
+        <element label="Average Commit Size" max_length="40" name="average_commit_size" type="float"/>
+        <element label="Average # Files Changed" max_length="40" name="average_files_changed" type="float"/>
+        <element label="Commit Rate" max_length="40" name="commit_rate" type="integer"/>
+        <element label="Commit Revert Rate" max_length="40" name="commit_revert_rate" type="float"/>
+        <element label="Commit Score" max_length="40" name="commit_score" type="float"/>
+        <element label="Commit Success Rate" max_length="40" name="commit_success_rate" type="float"/>
+        <element label="SCM Commiter" max_length="32" name="scm_commiter" reference="x_snc_entdevops_scm_commiters" type="reference"/>
+        <index name="index">
+            <element name="scm_commiter"/>
+        </index>
+    </element>
+</database>

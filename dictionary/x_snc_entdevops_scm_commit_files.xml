@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element label="SCM Commit Files" max_length="40" name="x_snc_entdevops_scm_commit_files" type="collection">
+        <element label="Commit" max_length="32" name="commit" reference="x_snc_entdevops_scm_commits" type="reference"/>
+        <element label="File Additions" max_length="40" name="file_additions" type="integer"/>
+        <element label="File Changes" max_length="40" name="file_changes" type="integer"/>
+        <element label="File Deletions" max_length="40" name="file_deletions" type="integer"/>
+        <element display="true" label="File Name" max_length="255" name="file_name" type="string"/>
+        <element label="File Path" max_length="255" name="file_path" type="string"/>
+        <element label="File SHA" max_length="48" name="file_sha" type="string"/>
+        <element label="File Size" max_length="40" name="file_size" type="integer"/>
+        <element label="Patch" max_length="2048000" name="patch" type="string"/>
+        <element label="Status" max_length="40" name="status" type="string"/>
+        <index name="index">
+            <element name="commit"/>
+        </index>
+    </element>
+</database>

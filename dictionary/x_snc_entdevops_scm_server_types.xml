@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element label="SCM Server Types" max_length="40" name="x_snc_entdevops_scm_server_types" type="collection">
+        <element label="Fetch Commit Script" max_length="20480" name="fetch_commit_script" type="script"/>
+        <element label="Name" max_length="40" name="name" type="string"/>
+        <element label="Webhook Processor" max_length="20480" name="webhook_processor" type="script"/>
+    </element>
+</database>

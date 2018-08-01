@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_ws_operation">
+    <sys_ws_operation action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <consumes>application/json,application/xml,text/xml</consumes>
+        <consumes_customized>false</consumes_customized>
+        <default_operation_uri/>
+        <enforce_acl>cf9d01d3e73003009d6247e603f6a990</enforce_acl>
+        <http_method>POST</http_method>
+        <name>Approval Request</name>
+        <operation_script><![CDATA[(function process(/*RESTAPIRequest*/ request, /*RESTAPIResponse*/ response) {
+	gs.info("Approval Request WebHook was hit with "+JSON.stringify(request.body.data));
+	var commit;
+	var commitSHA;
+	var commitURL;
+	var callbackURL = request.body.data.callback_url;
+	var buildURL = request.body.data.build_url;
+	var apiURL = buildURL + "api/json";
+	var buildcall = new webcall();
+	var webreturn = buildcall.process(apiURL,"Build","85b21e564faa1300a44a121f9310c7e7");
+	var upstreamProject = webreturn.actions[0].causes[0].upstreamProject;
+	var upstreamBuild = webreturn.actions[0].causes[0].upstreamBuild;
+	var upstreamGr = new GlideRecord('x_235889_nowdevops_builds');
+	upstreamGr.addQuery('build_job',upstreamProject);
+	upstreamGr.addQuery('build_number',upstreamBuild);
+	upstreamGr.query();
+	if (upstreamGr.next()){
+		commit = commitSHA = upstreamGr.upstream_build.upstream_build.commit;
+		commitSHA = upstreamGr.upstream_build.upstream_build.commit.sha;
+		commitURL = upstreamGr.upstream_build.upstream_build.commit.url;
+		//gs.info("APPROVAL STEP:" +commitSHA);
+	}
+	
+	//var sys_id_of_template = '56a8e507db6b26405accd5f0cf96190b';
+	var gr = new GlideRecord('change_request');
+	gr.initialize();
+	var t =   new GlideTemplate.get('6c97f745dba7130048e8ff041d961961');
+	t.apply(gr);
+	if (commitSHA) {
+		gr.short_description = "Request Approval for code promotion to production for commit "+commitSHA;
+	}
+	if (commitURL) {
+		gr.description = gr.description + "\n\nReference GitHub Commit "+commitURL;
+	}
+	gr.justification = "This release fixes PRB0000012. Code has been validated and automating testing has been run.";
+	gr.implementation_plan = "now-ops-prod-deply job will perform all deployment steps and initate post-deploy test plan.\n\n~"+callbackURL;
+	gr.risk_impact_analysis = "All test for development deployment successfully completed.";
+	gr.backout_plan = "Associated commits for this release are tracked and can be automatically reverted.";
+	gr.test_plan = "Automated tests are initated by Jenkins";
+	var approval = "auto";
+	if (commit) {
+		var chgRuleGr = new GlideRecord('x_235889_nowdevops_change_approval_rules');
+		chgRuleGr.query();
+		while (chgRuleGr.next()) {
+			if(commit) {
+				if (chgRuleGr.policy_type == "File") {
+					var commitFileGr = new GlideRecord('x_235889_nowdevops_scm_commit_files');
+					commitFileGr.addQuery('commit',commit.sys_id);
+					commitFileGr.addQuery('file_name',chgRuleGr.changed_file);
+					commitFileGr.query();
+					while (commitFileGr.next()) {
+						if(commitFileGr.file_changes > chgRuleGr.file_changes) {
+							gs.info("Changed approval state to manual based on file changes");
+							approval = "manual";
+						}
+					}
+				} else if (chgRuleGr.policy_type == "Total" && chgRuleGr.total_changes > commit.total_changes) {
+					gs.info("Changed approval state to manual based on total commit changes");
+					approval = "manual";
+					
+				}
+			}
+		}
+	}
+	if (approval == "auto") {
+		gr.state = 3;
+	}
+	gs.info('CHANGE APPROVAL STATE WAS: '+approval);
+	
+	gr.insert();
+	
+	//var myproc = new WebHook_Processor();
+	//myproc.BuildProcess(request.body.data);
+	
+})(request, response);]]></operation_script>
+        <operation_uri>/api/x_snc_entdevops/entdevops/ApprovalRequest</operation_uri>
+        <produces>application/json,application/xml,text/xml</produces>
+        <produces_customized>false</produces_customized>
+        <relative_path>/ApprovalRequest</relative_path>
+        <request_example/>
+        <requires_acl_authorization>true</requires_acl_authorization>
+        <requires_authentication>false</requires_authentication>
+        <requires_snc_internal_role>true</requires_snc_internal_role>
+        <short_description/>
+        <sys_class_name>sys_ws_operation</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2018-07-25 17:56:46</sys_created_on>
+        <sys_id>ce8d6f8ddb67130048e8ff041d961957</sys_id>
+        <sys_mod_count>3</sys_mod_count>
+        <sys_name>Approval Request</sys_name>
+        <sys_package display_value="entdevops" source="x_snc_entdevops">86b561e0dba7930048e8ff041d9619c9</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="entdevops">86b561e0dba7930048e8ff041d9619c9</sys_scope>
+        <sys_update_name>sys_ws_operation_ce8d6f8ddb67130048e8ff041d961957</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2018-07-25 19:04:00</sys_updated_on>
+        <web_service_definition display_value="EntDevOps">bc6c638ddb67130048e8ff041d9619b2</web_service_definition>
+        <web_service_version/>
+    </sys_ws_operation>
+</record_update>

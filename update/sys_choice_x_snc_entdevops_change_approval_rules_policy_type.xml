@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update>
+    <sys_choice action="INSERT_OR_UPDATE" field="policy_type" table="x_snc_entdevops_change_approval_rules" version="3">
+        <sys_choice action="INSERT_OR_UPDATE">
+            <dependent_value/>
+            <element>policy_type</element>
+            <hint/>
+            <inactive>false</inactive>
+            <label>File</label>
+            <language>en</language>
+            <name>x_snc_entdevops_change_approval_rules</name>
+            <sequence>100</sequence>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2018-07-25 15:51:29</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>20e0d34ddb27130048e8ff041d961943</sys_id>
+            <sys_mod_count>2</sys_mod_count>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2018-07-25 15:51:58</sys_updated_on>
+            <value>File</value>
+        </sys_choice>
+        <sys_choice action="INSERT_OR_UPDATE">
+            <dependent_value/>
+            <element>policy_type</element>
+            <hint/>
+            <inactive>false</inactive>
+            <label>Total Changes</label>
+            <language>en</language>
+            <name>x_snc_entdevops_change_approval_rules</name>
+            <sequence>200</sequence>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2018-07-25 15:51:33</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>dbe0d34ddb27130048e8ff041d9619ee</sys_id>
+            <sys_mod_count>2</sys_mod_count>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2018-07-25 15:52:01</sys_updated_on>
+            <value>Total</value>
+        </sys_choice>
+        <sys_choice action="INSERT_OR_UPDATE">
+            <dependent_value/>
+            <element>policy_type</element>
+            <hint/>
+            <inactive>false</inactive>
+            <label>Commiter</label>
+            <language>en</language>
+            <name>x_snc_entdevops_change_approval_rules</name>
+            <sequence>300</sequence>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2018-07-25 15:51:37</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>5cf0d34ddb27130048e8ff041d961944</sys_id>
+            <sys_mod_count>2</sys_mod_count>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2018-07-25 15:52:03</sys_updated_on>
+            <value>Commiter</value>
+        </sys_choice>
+        <sys_choice_set action="INSERT_OR_UPDATE">
+            <element>policy_type</element>
+            <name>x_snc_entdevops_change_approval_rules</name>
+            <sys_class_name>sys_choice_set</sys_class_name>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2018-07-25 15:51:29</sys_created_on>
+            <sys_id>17e0934ddb27130048e8ff041d961956</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_name>policy_type</sys_name>
+            <sys_package display_value="entdevops" source="x_snc_entdevops">86b561e0dba7930048e8ff041d9619c9</sys_package>
+            <sys_policy/>
+            <sys_scope display_value="entdevops">86b561e0dba7930048e8ff041d9619c9</sys_scope>
+            <sys_update_name>sys_choice_x_snc_entdevops_change_approval_rules_policy_type</sys_update_name>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2018-07-25 15:51:29</sys_updated_on>
+        </sys_choice_set>
+    </sys_choice>
+</record_update>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update>
+    <sys_documentation element="webhook_processor" label="Webhook Processor" language="en" table="x_snc_entdevops_scm_server_types">
+        <sys_documentation action="INSERT_OR_UPDATE">
+            <element>webhook_processor</element>
+            <help/>
+            <hint/>
+            <label>Webhook Processor</label>
+            <language>en</language>
+            <name>x_snc_entdevops_scm_server_types</name>
+            <plural>Webhook Processors</plural>
+            <sys_class_name>sys_documentation</sys_class_name>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2018-07-25 17:22:09</sys_created_on>
+            <sys_id>97a5ef49db67130048e8ff041d961951</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_name>Webhook Processor</sys_name>
+            <sys_package display_value="entdevops" source="x_snc_entdevops">86b561e0dba7930048e8ff041d9619c9</sys_package>
+            <sys_policy/>
+            <sys_scope display_value="entdevops">86b561e0dba7930048e8ff041d9619c9</sys_scope>
+            <sys_update_name>sys_documentation_x_snc_entdevops_scm_server_types_webhook_processor_en</sys_update_name>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2018-07-25 17:22:09</sys_updated_on>
+            <url/>
+            <url_target/>
+        </sys_documentation>
+    </sys_documentation>
+</record_update>

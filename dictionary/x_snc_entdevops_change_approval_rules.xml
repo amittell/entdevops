@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element label="Change Approval Rules" max_length="40" name="x_snc_entdevops_change_approval_rules" type="collection">
+        <element label="Change File" max_length="40" name="change_file" type="string"/>
+        <element label="Commiter" max_length="32" name="commiter" reference="x_snc_entdevops_scm_commiters" type="reference"/>
+        <element label="Commiter Score Threshold" max_length="40" name="commiter_score_threshold" type="integer"/>
+        <element label="File Changes" max_length="255" name="file_changes" type="integer"/>
+        <element choice="3" default="File" label="Policy Type" max_length="40" name="policy_type" type="choice">
+            <choice>
+                <element inactive_on_update="false" label="File" sequence="100" value="File"/>
+                <element inactive_on_update="false" label="Total Changes" sequence="200" value="Total"/>
+                <element inactive_on_update="false" label="Commiter" sequence="300" value="Commiter"/>
+            </choice>
+        </element>
+        <element label="Repository" max_length="32" name="repository" reference="x_snc_entdevops_scm_repositories" type="reference"/>
+        <element label="Total Changes" max_length="255" name="total_changes" type="integer"/>
+        <index name="index">
+            <element name="repository"/>
+        </index>
+        <index name="index2">
+            <element name="commiter"/>
+        </index>
+    </element>
+</database>

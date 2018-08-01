@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_template">
+    <sys_template action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <global>false</global>
+        <group display_value="Application Owner" name="Application Owner">29083f45dba7130048e8ff041d9619ef</group>
+        <link_element/>
+        <name>Application Release</name>
+        <next/>
+        <next_child/>
+        <roles/>
+        <short_description>Request Approval for code promotion to production</short_description>
+        <show_on_template_bar>true</show_on_template_bar>
+        <stand_alone>false</stand_alone>
+        <sys_class_name>sys_template</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2018-07-25 18:44:52</sys_created_on>
+        <sys_id>6c97f745dba7130048e8ff041d961961</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Application Release</sys_name>
+        <sys_package display_value="entdevops" source="x_snc_entdevops">86b561e0dba7930048e8ff041d9619c9</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="entdevops">86b561e0dba7930048e8ff041d9619c9</sys_scope>
+        <sys_update_name>sys_template_6c97f745dba7130048e8ff041d961961</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2018-07-25 18:44:52</sys_updated_on>
+        <table>change_request</table>
+        <template>opened_by=9db7f745dba7130048e8ff041d9619a7^category=Applications Software^active=true^approval=requested^requested_by=25e63345dba7130048e8ff041d961909^assigned_to=9db7f745dba7130048e8ff041d9619a7^assignment_group=29083f45dba7130048e8ff041d9619ef^cmdb_ci=06187f45dba7130048e8ff041d9619ff^short_description=Request Approval for code promotion to production^description=This change was created automatically based on Dev environment tests being completed successfully in the Jenkins pipeline.&#13;
+&#13;
+Once this change is approved, Jenkins will proceed with the pipeline deployment to production then execute the prod deployment test steps.^EQ</template>
+        <user display_value="System Administrator">6816f79cc0a8016401c5a33be04be441</user>
+        <view/>
+    </sys_template>
+</record_update>

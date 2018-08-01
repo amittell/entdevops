@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element label="Builds" max_length="40" name="x_snc_entdevops_builds" type="collection">
+        <element label="Building" max_length="40" name="building" type="string"/>
+        <element label="Build ID" max_length="40" name="build_id" type="string"/>
+        <element label="Build Job" max_length="255" name="build_job" type="string"/>
+        <element label="Build Number" max_length="40" name="build_number" type="integer"/>
+        <element label="Build Server" max_length="32" name="build_server" reference="x_snc_entdevops_build_servers" type="reference"/>
+        <element label="Commit" max_length="32" name="commit" reference="x_snc_entdevops_scm_commits" type="reference"/>
+        <element label="Console Output" max_length="48000000" name="console_output" type="string"/>
+        <element label="Description" max_length="4000" name="description" type="string"/>
+        <element label="Display Name" max_length="40" name="display_name" type="string"/>
+        <element label="Duration" max_length="40" name="duration" type="float"/>
+        <element label="Estimated Duration" max_length="40" name="estimated_duration" type="float"/>
+        <element display="true" label="Full Display Name" max_length="40" name="full_display_name" type="string"/>
+        <element label="Result" max_length="40" name="result" type="string"/>
+        <element label="Started By" max_length="2048" name="started_by" type="string"/>
+        <index name="index">
+            <element name="build_server"/>
+        </index>
+        <index name="index2">
+            <element name="commit"/>
+        </index>
+    </element>
+</database>
